@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="page-header">
+<h1>{% block title %}Courses{% endblock %}</h1>
+</div>
+<ul class="list-group">
+    {% for course in course_list %}
+    <li class="list-group-item">
+      {{ course.number }} {{ course.name }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
