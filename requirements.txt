@@ -1,1 +1,14 @@
-Django==1.8.6
+decorator==4.0.4
+Django==1.8.5
+flake8==2.5.0
+ipython==4.0.0
+ipython-genutils==0.1.0
+mccabe==0.3.1
+path.py==8.1.2
+pep8==1.5.7
+pickleshare==0.5
+pyflakes==1.0.0
+pyreadline==2.1
+simplegeneric==0.8.1
+traitlets==4.0.0
+wheel==0.26.0
