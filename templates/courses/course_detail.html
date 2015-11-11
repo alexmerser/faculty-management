@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="page-header">
+  <h1>{% block title %}{{ course.number }}{% endblock %}</h1>
+  <h2>{{ course.name }}</h2>
+</div>
+
+
+<ul class="nav nav-tabs">
+  {% for subject in subjects %}
+    <li role="presentation" {% if forloop.first %}class="active"{% endif %}>
+      <a data-toggle="tab" href="#{{ subject.pk }}">{{ subject.name }}</a>
+    </li>
+  {% endfor %}
+</ul>
+
+<div class="tab-content">
+  {% for subject in subjects %}
+    <div id="{{ subject.pk }}" class="tab-pane {% if forloop.first %}active{% endif %}">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Student</th>
+            {% for exam in subject.exams %}
+              <th>{{ exam }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for student in subject.students %}
+            <tr>
+              <td>{{ student.obj }}</td>
+            {% for grade in student.grades %}
+              <td>{{ grade.value }}</td>
+            {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

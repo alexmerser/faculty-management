@@ -7,7 +7,7 @@
 <ul class="list-group">
     {% for course in course_list %}
     <li class="list-group-item">
-      {{ course.number }} {{ course.name }}
+      <a href="{% url 'course_detail' course.pk  %}">{{ course.number }} {{ course.name }}</a>
     </li>
     {% endfor %}
 </ul>
