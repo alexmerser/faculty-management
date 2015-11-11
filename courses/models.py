@@ -8,9 +8,9 @@ def get_current_year():
 
 
 class Course(models.Model):
-    number = models.CharField(max_length=10, blank=True)
-    name = models.CharField(max_length=35, blank=True)
-    description = models.TextField()
+    number = models.CharField(max_length=10)
+    name = models.CharField(max_length=35)
+    description = models.TextField(blank=True)
     year = models.PositiveIntegerField(default=get_current_year)
     semester = models.PositiveIntegerField(default=1)
 
