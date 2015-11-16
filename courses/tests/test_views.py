@@ -9,6 +9,13 @@ from exams.models import Grade, Exam, ExamType
 from subjects.models import Subject
 from users.models import Student
 
+class TestCourseList(TestCase):
+    def test_single_subject(self):
+        course = Course.objects.create(number="98765", name="Russian Language")
+        response = self.client.get('/courses/')
+        self.assertContains(response,course.number)
+        self.assertContains(response,course.name)
+
 
 class TestCourseDetail(TestCase):
     def test_empty(self):
@@ -34,3 +41,5 @@ class TestCourseDetail(TestCase):
         self.assertContains(response, grade.value)
         self.assertContains(response, subject.name)
         self.assertContains(response, student.user.get_full_name())
+
+
