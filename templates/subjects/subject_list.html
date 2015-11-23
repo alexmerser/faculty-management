@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="page-header">
+<h1>{% block title %}Subjects{% endblock %}</h1>
+</div>
+<ul class="list-group">
+  {% for subject in subject_list %}
+    <li class="list-group-item">
+      <a href="">{{ subject.name }}</a>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}
