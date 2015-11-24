@@ -1,5 +1,4 @@
 {% load static %}
-<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -9,38 +8,69 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Faculty Management</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Faculty Management</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="{% url 'courses_list' %}">Courses</a></li>
-            <li><a href="{% url 'subject_list' %}">Subjects</a></li>
-            <li><a href="">Assignments</a></li>
-            <li><a href="">Researches</a></li>
-            <li><a href="/admin">LOGIN</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="{% url 'courses_list' %}">Courses</a></li>
+                <li><a href="">Subjects</a></li>
+                <li><a href="">Assignments</a></li>
+                <li><a href="">Researches</a></li>
+                <li>
+                    <div class="btn pull-right">
+                        <div class="dropdown">
+                            <button class=" btn btn-link dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Login
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-toggle="modal" data-target="#login-modal"">Student</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'student_list' %}">Staff</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Dean</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="/admin">Admin</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-    <div class="container">
+<div class="container">
     {% block content %}
     {% endblock %}
-    </div><!-- /.container -->
+</div>
 
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+         <div class="modal-dialog">
+            <div class="loginmodal-container">
+               <h1>Login to Your Student Account</h1><br>
+              <form>
+               <input type="text" name="user" placeholder="Username">
+               <input type="password" name="pass" placeholder="Password">
+               <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+              </form>
 
-    <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-    <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+              <div class="login-help">
+               <a href="#">Register</a> - <a href="#">Forgot Password</a>
+              </div>
+            </div>
+         </div>
+        </div>
+</div>
+
+<script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
 
 </body>
 </html>

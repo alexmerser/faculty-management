@@ -21,5 +21,8 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='home/home.html')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^courses/', include('courses.urls')),
+    url(r'^exams/', include('exams.urls')),
+    url(r'^assignments/', include('assignments.urls')),
     url(r'^subjects/', include('subjects.urls')),
+    url(r'^users/', include('users.urls')),
 ]

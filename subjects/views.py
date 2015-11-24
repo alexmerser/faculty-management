@@ -8,15 +8,6 @@ from subjects.models import Subject
 class SubjectList(ListView):
     model = Subject
 
-    def get(self, request, *args, **kwargs):
-        self.object = get_object_or_404(Course, pk=kwargs['pk'])
-        return super().get(request, *args, **kwargs)
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        queryset = queryset.filter(course=self.object)
-        return queryset
-
 
 class SubjectDetail(DetailView):
     model = Subject

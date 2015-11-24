@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{% block title %}Assignments{% endblock %}</h1>
+</div>
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">UPCOMING ASSIGNMENTS</a></li>
+    <li><a data-toggle="tab" href="#menu1">COMPLETED ASSIGNMENTS</a></li>
+</ul>
+<br>
+<div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+        <table class="table table-bordered">
+            <tr>
+                <th>Topic</th>
+                <th>Deadline</th>
+            </tr>
+            {% for assignment in assignment_list %}
+            {% if assignment.tnow|date:"Ymd" < assignment.deadline|date:"Ymd" %}
+            <tr>
+                <td><a href="{% url 'assignment_detail' assignment.pk %}">{{ assignment.topic }}</a></td>
+                <td>{{ assignment.deadline }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+        <table class="table table-bordered">
+            <tr>
+                <th>Topic</th>
+                <th>Deadline</th>
+            </tr>
+            {% for assignment in assignment_list %}
+            {% if assignment.tnow|date:"Ymd" > assignment.deadline|date:"Ymd" %}
+            <tr>
+                <td>{{ assignment.topic }}</td>
+                <td>{{ assignment.deadline }}</td>
+            </tr>
+
+            {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}
