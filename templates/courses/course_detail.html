@@ -2,43 +2,32 @@
 
 {% block content %}
 <div class="page-header">
-  <h1>{% block title %}{{ course.number }}{% endblock %}</h1>
-  <h2>{{ course.name }}</h2>
+  <h2> {% block title %} {{ course.number }} - {{ course.name }} {% endblock %}</h2>
 </div>
 
 
-<ul class="nav nav-tabs">
+<div class="panel-group" id="accordion">
   {% for subject in subjects %}
-    <li role="presentation" {% if forloop.first %}class="active"{% endif %}>
-      <a data-toggle="tab" href="#{{ subject.pk }}">{{ subject.name }}</a>
-    </li>
-  {% endfor %}
-</ul>
-
-<div class="tab-content">
-  {% for subject in subjects %}
-    <div id="{{ subject.pk }}" class="tab-pane {% if forloop.first %}active{% endif %}">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Student</th>
-            {% for exam in subject.exams %}
-              <th>{{ exam }}</th>
-            {% endfor %}
-          </tr>
-        </thead>
-        <tbody>
-          {% for student in subject.students %}
-            <tr>
-              <td>{{ student.obj }}</td>
-            {% for grade in student.grades %}
-              <td>{{ grade.value }}</td>
-            {% endfor %}
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#{{ subject.pk }}">
+              <span class="glyphicon glyphicon-triangle-right"></span>  {{ subject.name }} <span class="pull-right"> {{ subject.staff }}</span></a>
+          </h4>
+        </div>
+        <div id="{{ subject.pk }}" class="panel-collapse collapse">
+          <div class="panel-body">
+              <table class="table table-bordered">
+                <tr><th>Students</th></tr>
+                  {% for student in subject.students %}
+                    <tr>
+                      <td>{{ student.obj }}</td>
+                    </tr>
+                  {% endfor %}
+              </table>
+          </div>
+        </div>
+      </div>
   {% endfor %}
 </div>
 

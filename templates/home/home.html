@@ -1,15 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="page-header">
-<h1>This is home page !</h1>
-</div>
-
-<div class="container">
-      <div class="row">
-        <div class="col-md-4">.col-md-4</div>
-        <div class="col-md-4">.col-md-4</div>
-        <div class="col-md-4">.col-md-4</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="page-header">
+          <h2><span class="glyphicon glyphicon-list"></span> LATEST INFORMATION</h2>
+        </div>
+        <div class="panel panel-default">
+          <ul class="list-group">
+            <li class="list-group-item"><a href=""><span class=" glyphicon glyphicon-chevron-right"></span> Research : {{ view.researches.0 }}</a></li>
+          </ul>
+        </div>
       </div>
-</div>
+      <div class="col-md-4">
+        <div class="page-header">
+          <h2><span class="glyphicon glyphicon-list"></span> EXAM UPDATES</h2>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

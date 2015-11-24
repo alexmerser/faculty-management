@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="page-header">
+<h1><span class="glyphicon glyphicon-file"></span> {% block title %} {{ research.topic }}{% endblock %}</h1>
+</div>
+    <table class="table">
+    <tr>
+        <th>Subject</th>
+        <td>{{ research.subject }}</td>
+    </tr>
+    <tr>
+        <th>Submitted</th>
+        <td>{{ research.submitted }}</td>
+    </tr>
+    <tr>
+        <th>Presented</th>
+        <td>{{ research.presented }}</td>
+    </tr>
+    <tr>
+        <th>Review</th>
+        <td>{{ research.review }}</td>
+    </tr>
+    </table>
+<a href="/researches/" class="btn btn-danger pull-right"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+
+{% endblock %}
