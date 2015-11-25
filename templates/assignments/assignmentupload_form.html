@@ -1,0 +1,12 @@
+{% block content %}
+{#  <h1>Upload for {{ form.assignment }}</h1>#}
+
+  <form method="post" enctype="multipart/form-data"
+        action="{% url 'assignment_upload' form.assignment.pk %}">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <input type="submit"/>
+  </form>
+{% endblock %}
