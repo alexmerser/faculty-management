@@ -1,4 +1,5 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import DetailView
+
 from courses.models import Dean
 from users.models import Student, Staff
 

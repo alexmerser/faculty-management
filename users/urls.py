@@ -5,7 +5,7 @@ from users.views import StudentsDetail, StaffsDetail, DeansDetail
 urlpatterns = [
     url(r'^$',
         StudentsDetail.as_view(),
-        name='student_list'),
+        name='student_detail'),
     url(r'^(?P<pk>\d+)/?$',
         StaffsDetail.as_view(),
         name='staff_detail'),
