@@ -5,6 +5,16 @@ from django.utils import timezone
 from subjects.models import Subject
 from users.models import Student
 
+class AssignmentUpload(models.Model):
+    assignment = models.ForeignKey(Assignment)
+    user = models.ForeignKey(User)
+    file = models.FileField(upload_to='uploads/')
+    created = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return 'Upload to {} as {} at {}, {}'.format(
+            self.assignment, self.user, self.created, self.file.name)
+
 
 class Assignment(models.Model):
     subject = models.ForeignKey(Subject)
@@ -20,12 +30,3 @@ class Assignment(models.Model):
         return self.deadline > timezone.now()
 
 
-class AssignmentUpload(models.Model):
-    assignment = models.ForeignKey(Assignment)
-    user = models.ForeignKey(User)
-    file = models.FileField(upload_to='uploads/')
-    created = models.DateTimeField(default=timezone.now)
-
-    def __str__(self):
-        return 'Upload to {} as {} at {}, {}'.format(
-            self.assignment, self.user, self.created, self.file.name)

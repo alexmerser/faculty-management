@@ -20,12 +20,3 @@ class Research(models.Model):
         return self.topic
 
 
-class ResearchUpload(models.Model):
-    # research = models.ForeignKey(Research)
-    user = models.ForeignKey(Student)  # TODO: rename this to student
-    subject = models.ForeignKey(Subject)  # TODO: delete this
-    submitted = date.today()
-    file = models.FileField(upload_to='uploads/')
-
-    def __str__(self):
-        return 'Your file has been uploaded ! ' + self.subject.name

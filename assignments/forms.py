@@ -8,6 +8,7 @@ class AssignmentUploadForm(forms.ModelForm):
         model = AssignmentUpload
         fields = ('file',)
 
+
     def __init__(self, *args, **kwargs):
         self.assignment = kwargs.pop('assignment')
         self.user = kwargs.pop('user')
