@@ -14,3 +14,4 @@ pyreadline==2.1
 simplegeneric==0.8.1
 traitlets==4.0.0
 wheel==0.26.0
+django-downloadview==1.8

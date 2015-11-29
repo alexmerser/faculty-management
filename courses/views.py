@@ -38,6 +38,4 @@ class CourseDetail(DetailView):
                 students=students,
             ))
         context['subjects'] = subjects
-        print(subjects)
         return context
-

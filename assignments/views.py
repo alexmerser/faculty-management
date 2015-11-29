@@ -22,8 +22,6 @@ class AssignmentUploadView(CreateView):
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         user = self.request.user
-        # if not user.student_set.exists():
-        #     raise PermissionDenied('Only students are allowed to upload assignments')
         kwargs['user'] = user
         kwargs['assignment'] = get_object_or_404(Assignment, pk=self.kwargs['pk'])
         return kwargs

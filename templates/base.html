@@ -33,17 +33,18 @@
           <li><a href="{% url 'courses_list' %}">Courses</a></li>
           <li><a href="{% url 'subject_list' %}">Subjects</a></li>
           <li><a href="{% url 'research_list' %}">Researches</a></li>
-      {% if user.student_set.exists %}
+        {% for group in user.groups.all %}
+          {% if group.name == 'Students' %}
           <li><a href="{% url 'exams_list' %}">Exams</a></li>
           <li><a href="{% url 'assignments_list' %}">Assignments</a></li>
-      {% elif user.staff_set.exists %}
+          {% elif group.name == 'Staffs' %}
+          <li><a href="{% url 'assignments_list' %}">Assignments</a></li>
           <li><a href="{% url 'exams_list' %}">Exams</a></li>
           <li><a href="/admin/">Input Data</a></li>
-      {% else %}
-
-      {% endif %}
+          {% endif %}
+        {% endfor %}
           {% if user.is_authenticated %}
-            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li><a href="{% url 'logout' %}">Logout ({{ user.username }})</a></li>
           {% else %}
             <li><a href="{% url 'login' %}">Login</a></li>
           {% endif %}
@@ -83,6 +84,15 @@
 <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
 <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'main.js' %}"></script>
+<script>
+$(document).ready(function(){
+   $(".pophover").popover({
+     trigger: "hover",
+     container: 'body',
+     html: true,
 
+   });
+});
+</script>
 </body>
 </html>

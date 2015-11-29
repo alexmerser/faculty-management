@@ -1,19 +1,43 @@
 {% extends 'base.html' %}
 
 {% block content %}
+  <div class="container" style="margin-bottom: 100px;">
+      <div class="page-header">
+        <h2>LATEST INFORMATION</h2>
+      </div>
+        <div class="row container">
+          <div class="col-md-4">
+              <div class="page-header">
+                <h2><span class="glyphicon glyphicon-list"></span> Assignments</h2>
+              </div>
+              <ul class="list-group">
+                {% for assignment in view.assignments %}
+                  <li class="list-group-item"><a href="{% url 'assignment_detail' assignment.pk %}" class="pophover" data-container="body" data-trigger="hover" title="{{ assignment.topic }}" data-content="{{ assignment.description|slice:":255" }} <br><i>{{ assignment.deadline }}</i>">{{ forloop.counter }}. {{ assignment.topic }}</a></li>
+                {% endfor %}
+              </ul>
+          </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8">
-        <div class="page-header">
-          <h2><span class="glyphicon glyphicon-list"></span> LATEST INFORMATION</h2>
+          <div class="col-md-4">
+              <div class="page-header">
+                <h2><span class="glyphicon glyphicon-list"></span> Researches</h2>
+              </div>
+              <ul class="list-group">
+                {% for research in view.researches %}
+                  <li class="list-group-item"><a href="{% url 'research_detail' research.pk %}" class="pophover" data-container="body" data-trigger="hover" title="{{ research.topic }}" data-content="{{ research.review|slice:":255" }} <br><i>{{ research.submitted }}</i>">{{ forloop.counter }}. {{ research.topic }}</a></li>
+                {% endfor %}
+              </ul>
+          </div>
+          <div class="col-md-4">
+              <div class="page-header">
+                <h2><span class="glyphicon glyphicon-list"></span> Exams</h2>
+              </div>
+            <ul class="list-group"></ul>
+              {% for exam in view.exams %}
+                <li class="list-group-item"><a href="{% url 'exam_detail' exam.pk %}" class="pophover" data-container="body" data-trigger="hover" title="{{ exam.exam_type }}" data-content="{{ exam.subject }} <br><i>{{ exam.date }}</i>">{{ forloop.counter }}. {{ exam.subject }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
         </div>
-
-      </div>
-      <div class="col-md-4">
-
-      </div>
-    </div>
   </div>
 
 {% endblock %}

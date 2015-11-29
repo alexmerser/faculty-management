@@ -20,20 +20,36 @@
   </table>
 
   <table class="table table-bordered">
-  <tr><th>#</th><th>File</th><th>Date</th></tr>
+  <tr><th>#</th><th>File</th><th>Date</th>
+{% for group in user.groups.all %}
+  {% if group.name == 'Staffs' %}
+  <th>Student</th>
+  {% endif %}
+{% endfor %}
+  </tr>
   {% for upload in assignment.assignmentupload_set.all %}
-    <tr><td>{{ forloop.counter }}</td><td>{{ upload.file }}</td><td>{{ upload.created }}</td></tr>
+    {% if upload.user|escape ==  request.user.username %}
+    <tr><td>{{ forloop.counter }}</td><td><a href="{{ upload.file.url }}">{{ upload.file.url }}</a></td><td>{{ upload.created }}</td></tr>
+    {% endif %}
+  {% for group in user.groups.all %}
+  {% if group.name == 'Staffs' %}
+      <tr><td>{{ forloop.counter }}</td><td><a href="{{ upload.file.url }}">{{ upload.file.url }}</a></td><td>{{ upload.created }}</td><td>{{ upload.user.get_full_name }}</td></tr>
+    {% endif %}
+  {% endfor %}
   {% endfor %}
   </table>
 
-
-{% if assignment.is_upcoming %}
-  {% load render_partial %}
-  {% render_partial 'assignments.views.AssignmentUploadView' pk=assignment.pk %}
-{% else %}
-  <div class="alert alert-warning">
-      Form is closed, you should upload your assignment before {{ assignment.deadline }} !
-  </div>
-{% endif %}
+{% for group in user.groups.all %}
+  {% if group.name == 'Students' %}
+    {% if assignment.is_upcoming %}
+      {% load render_partial %}
+      {% render_partial 'assignments.views.AssignmentUploadView' pk=assignment.pk %}
+    {% else %}
+      <div class="alert alert-warning">
+          Form has been closed, you should upload your assignment before {{ assignment.deadline }} !
+      </div>
+    {% endif %}
+  {% endif%}
+{% endfor %}
 
 {% endblock %}

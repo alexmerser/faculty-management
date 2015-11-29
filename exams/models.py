@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 from subjects.models import Subject
 from users.models import Student
@@ -15,7 +16,7 @@ class Exam(models.Model):
     exam_type = models.ForeignKey(ExamType)
     subject = models.ForeignKey(Subject)
     hours = models.PositiveIntegerField()
-    date = models.DateField()
+    date = models.DateTimeField()
 
     class Meta:
         unique_together = ("exam_type", "subject", "date")
@@ -23,6 +24,9 @@ class Exam(models.Model):
     def __str__(self):
         return '{} in {} on {}'.format(self.exam_type, self.subject, self.date)
 
+    @property
+    def is_upcoming(self):
+        return self.date > timezone.now()
 
 class Grade(models.Model):
     exam = models.ForeignKey(Exam)
@@ -42,3 +46,7 @@ class Grade(models.Model):
 
     def __str__(self):
         return '{} {} {}'.format(self.student, self.exam, self.value)
+
+    @property
+    def return_username(self):
+        return self.student.user

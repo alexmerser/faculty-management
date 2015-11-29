@@ -17,14 +17,21 @@
         <p>Your account disabled !</p>
       </div>
     {% endif %}
-    <div class="input-group">
-      <form id="login_form" method="post" action="/login/">
+    <div class="col-md-12">
+      <form method="post" action="/login/">
         {% csrf_token %}
-        Username: <input type="text" name="username"  class="form-control"  />
-        <br />
-        Password: <input type="password" name="password"  class="form-control" />
-        <br />
-        <input type="submit" name="login"  class="btn btn-primary btn-block login loginmodal-submit" value="Login">
+        <div class="input-group">
+          <span class="input-group-addon">Username</span>
+          <input type="text" class="form-control" placeholder="Username" name="username" required="required">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">Password</span>
+          <input type="password" class="form-control" placeholder="password" name="password" required="required">
+        </div>
+        <div>
+          <br>
+        <input type="submit" name="login"  class="btn btn-primary btn-block" value="Login">
+        </div>
       </form>
     </div>
   </div>

@@ -8,51 +8,33 @@
 <table class="table table-bordered">
     <tr>
         <td>Topic</td>
-        <td>{{ exam.topic }}</td>
+        <td>{{ exam.subject }}</td>
     </tr>
     <tr>
-        <td>Deadline</td>
-        <td>{{ exam.deadline }}</td>
+        <td>Date</td>
+        <td>{{ exam.date }}</td>
     </tr>
     <tr>
-        <td>Description</td>
-        <td>{{ exam.description }}</td>
+        <td>Exam Type</td>
+        <td>{{ exam.exam_type }}</td>
     </tr>
+    <tr>
+        <td>Hours</td>
+        <td>{{ exam.hours }} hrs</td>
+    </tr>
+  {% for grade in exam.grade_set.all %}
+    {% if grade.return_username|escape == request.user.username  %}
+    <tr>
+        <td>Grade</td>
+        <td>
+          <h2>{{ grade.value }}</h2>
+        </td>
+    </tr>
+    {% endif %}
+  {% endfor %}
 </table>
-<ul class="nav nav-tabs">
-  {% for subject in subjects %}
-    <li role="presentation" {% if forloop.first %}class="active"{% endif %}>
-      <a data-toggle="tab" href="#{{ subject.pk }}">{{ subject.name }}</a>
-    </li>
-  {% endfor %}
-</ul>
 
-<div class="tab-content">
-  {% for subject in subjects %}
-    <div id="{{ subject.pk }}" class="tab-pane {% if forloop.first %}active{% endif %}">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Student</th>
-            {% for exam in subject.exams %}
-              <th>{{ exam }}</th>
-            {% endfor %}
-          </tr>
-        </thead>
-        <tbody>
-          {% for student in subject.students %}
-            <tr>
-              <td>{{ student.obj }}</td>
-            {% for grade in student.grades %}
-              <td>{{ grade.value }}</td>
-            {% endfor %}
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  {% endfor %}
-</div>
+
 
 {% endblock %}
 

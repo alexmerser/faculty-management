@@ -1,9 +1,10 @@
 $(function(){
-    var newpage = "?" + ((window.location.href.match(/([^\/]*)\/?$/)[1]).substring(0)) ;
+    var link = document.location.href.split('/');
+    var newpage = '/' + link[3] + '/'
     var NoSelect = true;
-    newpage = newpage.replace("?", "/");
+
      $("ul.nav a").each(function(){
-            if($(this).attr("href")==newpage + "/"){
+            if($(this).attr("href")==newpage){
                  $(this).parents().addClass('active');
                $(this).parent().addClass('active');
                 NoSelect = false;

@@ -18,11 +18,14 @@ class Assignment(models.Model):
     def is_upcoming(self):
         return self.deadline > timezone.now()
 
+    def full_name(self):
+        return self.user.get_full_name()
 
 class AssignmentUpload(models.Model):
     assignment = models.ForeignKey(Assignment)
     user = models.ForeignKey(User)
-    file = models.FileField(upload_to='uploads/')
+    file = models.FileField(verbose_name='file',upload_to='uploads/')
+    slug = models.SlugField(verbose_name='slug')
     created = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
