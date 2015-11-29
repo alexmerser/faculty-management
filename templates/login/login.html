@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="page-header">
+      <h2>{% block title %}Login Area{% endblock %}</h2>
+    </div>
+
+    {% if invalid %}
+      <div class="alert alert-danger">
+        <p>Your username or password is invalid !</p>
+      </div>
+    {% endif %}
+
+    {% if disabled %}
+      <div class="alert alert-danger">
+        <p>Your account disabled !</p>
+      </div>
+    {% endif %}
+    <div class="col-md-12">
+      <form method="post" action="/login/">
+        {% csrf_token %}
+        <div class="input-group">
+          <span class="input-group-addon">Username</span>
+          <input type="text" class="form-control" placeholder="Username" name="username" required="required">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">Password</span>
+          <input type="password" class="form-control" placeholder="password" name="password" required="required">
+        </div>
+        <div>
+          <br>
+        <input type="submit" name="login"  class="btn btn-primary btn-block" value="Login">
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+ 

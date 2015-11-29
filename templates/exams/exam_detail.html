@@ -8,17 +8,32 @@
 <table class="table table-bordered">
     <tr>
         <td>Topic</td>
-        <td>{{ exam.topic }}</td>
+        <td>{{ exam.subject }}</td>
     </tr>
     <tr>
-        <td>Deadline</td>
-        <td>{{ exam.deadline }}</td>
+        <td>Date</td>
+        <td>{{ exam.date }}</td>
     </tr>
     <tr>
-        <td>Description</td>
-        <td>{{ exam.description }}</td>
+        <td>Exam Type</td>
+        <td>{{ exam.exam_type }}</td>
     </tr>
+    <tr>
+        <td>Hours</td>
+        <td>{{ exam.hours }} hrs</td>
+    </tr>
+  {% for grade in exam.grade_set.all %}
+    {% if grade.return_username|escape == request.user.username  %}
+    <tr>
+        <td>Grade</td>
+        <td>
+          <h2>{{ grade.value }}</h2>
+        </td>
+    </tr>
+    {% endif %}
+  {% endfor %}
 </table>
 
-{% endblock %}
 
+
+{% endblock %}

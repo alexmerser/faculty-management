@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{% block title %} {{ staff.name }}{% endblock %}</h1>
+</div>
+<table class="table table-bordered">
+    <tr>
+        <td>Date of Birth</td>
+        <td>{{ staff.date_of_birth }}</td>
+    </tr>
+    <tr>
+        <td>Phone Number</td>
+        <td>{{ staff.phone }}</td>
+    </tr>
+</table>
+{% endblock %}
+

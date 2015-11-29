@@ -17,7 +17,7 @@
                 <th>Deadline</th>
             </tr>
             {% for assignment in assignment_list %}
-            {% if assignment.tnow|date:"Ymd" < assignment.deadline|date:"Ymd" %}
+            {% if assignment.is_upcoming %}
             <tr>
                 <td><a href="{% url 'assignment_detail' assignment.pk %}">{{ assignment.topic }}</a></td>
                 <td>{{ assignment.deadline }}</td>
@@ -33,9 +33,9 @@
                 <th>Deadline</th>
             </tr>
             {% for assignment in assignment_list %}
-            {% if assignment.tnow|date:"Ymd" > assignment.deadline|date:"Ymd" %}
+            {% if not assignment.is_upcoming %}
             <tr>
-                <td>{{ assignment.topic }}</td>
+                <td><a href="{% url 'assignment_detail' assignment.pk %}">{{ assignment.topic }}</a></td>
                 <td>{{ assignment.deadline }}</td>
             </tr>
 

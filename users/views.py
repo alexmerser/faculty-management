@@ -1,16 +1,16 @@
-from django.views.generic import ListView
+from django.views.generic import DetailView
 
 from courses.models import Dean
 from users.models import Student, Staff
 
 
-class StudentsList(ListView):
+class StudentsDetail(DetailView):
     model = Student
 
 
-class StaffsList(ListView):
+class StaffsDetail(DetailView):
     model = Staff
 
 
-class DeansList(ListView):
+class DeansDetail(DetailView):
     model = Dean
