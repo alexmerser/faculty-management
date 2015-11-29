@@ -9,18 +9,19 @@
     <li><a data-toggle="tab" href="#menu1">COMPLETED EXAMS</a></li>
 </ul>
 <br>
+
 <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
         <table class="table table-bordered">
             <tr>
-                <th>Topic</th>
-                <th>Deadline</th>
+                <th>Topic </th>
+                <th>Deadline </th>
             </tr>
             {% for exam in exam_list %}
-            {% if exam.tnow|date:"Ymd" < exam.deadline|date:"Ymd" %}
+            {% if exam.is_upcoming %}
             <tr>
-                <td><a href="{% url 'exam_detail' exam.pk %}">{{ exam.topic }}</a></td>
-                <td>{{ exam.deadline }}</td>
+                <td><a href="{% url 'exam_detail' exam.pk %}">{{ exam.subject }}</a></td>
+                <td>{{ exam.date }}</td>
             </tr>
             {% endif %}
             {% endfor %}
@@ -33,10 +34,10 @@
                 <th>Deadline</th>
             </tr>
             {% for exam in exam_list %}
-            {% if exam.tnow|date:"Ymd" > exam.deadline|date:"Ymd" %}
+            {% if not exam.is_upcoming %}
             <tr>
-                <td>{{ exam.topic }}</td>
-                <td>{{ exam.deadline }}</td>
+                <td><a href="{% url 'exam_detail' exam.pk %}">{{ exam.subject }}</a></td>
+                <td>{{ exam.date }}</td>
             </tr>
 
             {% endif %}
@@ -45,6 +46,6 @@
     </div>
 </div>
 
-
+<br>
 {% endblock %}
 
