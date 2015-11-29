@@ -2,12 +2,13 @@ from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+
 def run_tests(view):
     browser = webdriver.Firefox()
     browser.quit()
 
-class SeleniumTestCase(LiveServerTestCase):
 
+class SeleniumTestCase(LiveServerTestCase):
     def setUp(self):
         self.selenium = webdriver.Firefox()
         super(SeleniumTestCase, self).setUp()

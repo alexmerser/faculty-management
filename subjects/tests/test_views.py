@@ -1,12 +1,11 @@
-
-from django.test import TestCase
-from django.test.client import Client
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from django.test import TestCase
+from django.test.client import Client
 
 from courses.models import Course
 from subjects.models import Subject
-from users.models import  Staff
+from users.models import Staff
 
 
 class TestSubjectList(TestCase):
@@ -24,8 +23,9 @@ class TestSubjectList(TestCase):
         )
         subject = Subject.objects.create(course=course, name='Subject1', staff=staff)
         response = self.client.get('/subjects/')
-        self.assertContains(response,subject.name)
-        self.assertContains(response,course.number)
+        self.assertContains(response, subject.name)
+        self.assertContains(response, course.number)
+
 
 class TestSubjectDetail(TestCase):
     def test_single_detail(self):
@@ -42,7 +42,6 @@ class TestSubjectDetail(TestCase):
         )
         subject = Subject.objects.create(course=course, name='Subject1', staff=staff)
         response = self.client.get(reverse('subject_detail', args=(subject.pk,)))
-        self.assertContains(response,subject.name)
-        self.assertContains(response,staff.name)
+        self.assertContains(response, subject.name)
+        self.assertContains(response, staff.name)
         self.assertEqual(response.status_code, 200)
-

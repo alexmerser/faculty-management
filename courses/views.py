@@ -34,7 +34,7 @@ class CourseDetail(DetailView):
                 pk=subject.pk,
                 name=subject.name,
                 exams=exams,
-                staff = subject.staff,
+                staff=subject.staff,
                 students=students,
             ))
         context['subjects'] = subjects

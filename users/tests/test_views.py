@@ -1,15 +1,10 @@
-
-from django.test import TestCase
-from django.test.client import Client
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-from django.utils import timezone
+from django.test import TestCase
+from django.test.client import Client
 
+from users.models import Staff
 
-from courses.models import Course
-from research.models import Research
-from subjects.models import Subject
-from users.models import Student, Staff
 
 class TestStaffDetail(TestCase):
     def test_single(self):
@@ -24,5 +19,5 @@ class TestStaffDetail(TestCase):
             user=User.objects.create_user('test_staff', first_name='Staff')
         )
         response = self.client.get(reverse('staff_detail', args=(staff.pk,)))
-        self.assertContains(response,staff.name)
+        self.assertContains(response, staff.name)
         self.assertEqual(response.status_code, 200)

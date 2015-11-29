@@ -1,5 +1,3 @@
-from datetime import date
-
 from django.db import models
 
 from subjects.models import Subject
@@ -18,5 +16,3 @@ class Research(models.Model):
 
     def __str__(self):
         return self.topic
-
-

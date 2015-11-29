@@ -7,5 +7,6 @@ from research.models import Research
 class ResearchList(ListView):
     model = Research
 
+
 class ResearchDetail(DetailView):
     model = Research

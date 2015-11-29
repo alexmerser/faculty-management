@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-from django.test import TestCase,Client
+from django.test import TestCase, Client
 from django.utils import timezone
 
 from assignments.models import Assignment
@@ -27,9 +27,9 @@ class TestAssignmentList(TestCase):
             user=User.objects.create_user('test_staff', first_name='Staff')
         )
         subject = Subject.objects.create(course=course, name='Subject1', staff=staff)
-        assignment = Assignment.objects.create(subject=subject,topic='This is Enemy',deadline=timezone.now())
+        assignment = Assignment.objects.create(subject=subject, topic='This is Enemy', deadline=timezone.now())
         response = self.client.get('/assignments/')
-        self.assertContains(response,assignment.topic)
+        self.assertContains(response, assignment.topic)
 
 
 class TestAssignmentDetail(TestCase):
@@ -50,10 +50,12 @@ class TestAssignmentDetail(TestCase):
             user=User.objects.create_user('test_staff', first_name='Staff')
         )
         subject = Subject.objects.create(course=course, name='Subject1', staff=staff)
-        assignment = Assignment.objects.create(subject=subject,topic='This is Enemy',deadline=timezone.now(),description="I need holiday..")
+        assignment = Assignment.objects.create(subject=subject, topic='This is Enemy', deadline=timezone.now(),
+                                               description="I need holiday..")
         response = self.client.get(reverse('assignment_detail', args=(assignment.pk,)))
         self.assertContains(response, assignment.topic)
         self.assertContains(response, assignment.description)
+
 
 class TestAssignmentUploadForm(TestCase):
     def upload_test(self):
@@ -73,11 +75,13 @@ class TestAssignmentUploadForm(TestCase):
             user=User.objects.create_user('test_staff', first_name='Staff')
         )
         subject = Subject.objects.create(course=course, name='Subject1', staff=staff)
-        assignment = Assignment.objects.create(subject=subject,topic='This is Enemy',deadline=timezone.now(),description="I need holiday..")
+        assignment = Assignment.objects.create(subject=subject, topic='This is Enemy', deadline=timezone.now(),
+                                               description="I need holiday..")
         with open('requirements.txt') as fp:
-             self.client.post('/assignments/' + assignment.pk +'/upload/', {'assignment': assignment,'user':student.user, 'created':timezone.now(), 'file': fp})
+            self.client.post('/assignments/' + assignment.pk + '/upload/',
+                             {'assignment': assignment, 'user': student.user, 'created': timezone.now(), 'file': fp})
         response = self.client.get(reverse('assignment_detail', args=(assignment.pk,)))
         print(response.status_code)
         self.assertContains(response, assignment.topic)
-        self.assertContains(response, 'requirementszzz.txt')
+        self.assertContains(response, 'requirements.txt')
         self.assertEqual(response.status_code, 200)

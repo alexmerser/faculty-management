@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
-
 from django.core.urlresolvers import reverse
-from django.test import TestCase,Client
+from django.test import TestCase, Client
 
 from courses.models import Course
 from subjects.models import Subject
@@ -19,8 +18,9 @@ class TestCourseList(TestCase):
         self.assertEqual(login, True)
         course = Course.objects.create(number="98765", name="Russian Language")
         response = self.client.get('/courses/')
-        self.assertContains(response,course.number)
-        self.assertContains(response,course.name)
+        self.assertContains(response, course.number)
+        self.assertContains(response, course.name)
+
 
 class TestCourseDetail(TestCase):
     def test_empty(self):
@@ -60,5 +60,3 @@ class TestCourseDetail(TestCase):
         self.assertContains(response, student.user.get_full_name())
         self.assertContains(response, staff.user.get_full_name())
         self.assertEqual(response.status_code, 200)
-
-

@@ -7,26 +7,25 @@ from django.contrib.auth import logout
 
 
 class LoginView(TemplateView):
-    def user_login(request):
-        context = RequestContext(request)
-        if request.method == 'POST':
-            username = request.POST['username']
-            password = request.POST['password']
+    def user_login(self):
+        context = RequestContext(self)
+        if self.method == 'POST':
+            username = self.POST['username']
+            password = self.POST['password']
 
             user = authenticate(username=username, password=password)
             if user:
                 if user.is_active:
-                    login(request, user)
+                    login(self, user)
                     return HttpResponseRedirect('/')
                 else:
-                    return render_to_response('login/login.html', {'disabled':True})
+                    return render_to_response('login/login.html', {'disabled': True})
             else:
-                 return render_to_response('login/login.html', {'invalid':True})
+                return render_to_response('login/login.html', {'invalid': True})
 
         else:
             return render_to_response('login/login.html', {}, context)
 
-
-    def user_logout(request):
-        logout(request)
+    def user_logout(self):
+        logout(self)
         return HttpResponseRedirect('/')

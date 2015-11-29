@@ -28,6 +28,7 @@ class Exam(models.Model):
     def is_upcoming(self):
         return self.date > timezone.now()
 
+
 class Grade(models.Model):
     exam = models.ForeignKey(Exam)
     student = models.ForeignKey(Student)

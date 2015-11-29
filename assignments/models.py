@@ -5,6 +5,7 @@ from django.utils import timezone
 from subjects.models import Subject
 from users.models import Student
 
+
 class Assignment(models.Model):
     subject = models.ForeignKey(Subject)
     topic = models.CharField(max_length=30)
@@ -20,6 +21,7 @@ class Assignment(models.Model):
 
     def full_name(self):
         return self.user.get_full_name()
+
 
 class AssignmentUpload(models.Model):
     assignment = models.ForeignKey(Assignment)

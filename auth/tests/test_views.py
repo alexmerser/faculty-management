@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.test import TestCase,Client
+from django.test import TestCase, Client
 
 
 class TestLogin(TestCase):
@@ -12,5 +12,5 @@ class TestLogin(TestCase):
         login = self.client.login(username=self.username, password=self.password)
         self.assertEqual(login, True)
         response = self.client.get('/exams/')
-        self.assertContains(response,"logout")
+        self.assertContains(response, "logout")
         self.assertEqual(response.status_code, 200)

@@ -1,6 +1,6 @@
 from django.views.generic import DetailView, ListView
 
-from exams.models import Exam, Grade
+from exams.models import Exam
 
 
 class ExamsList(ListView):
@@ -9,4 +9,3 @@ class ExamsList(ListView):
 
 class ExamDetail(DetailView):
     model = Exam
-

@@ -1,10 +1,8 @@
+from django.views.generic.base import TemplateView
+
 from assignments.models import Assignment
 from exams.models import Exam
 from research.models import Research
-from django.views.generic.base import TemplateView
-
-from django import template
-from django.contrib.auth.models import Group
 
 
 class HomeView(TemplateView):

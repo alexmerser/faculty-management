@@ -13,6 +13,6 @@ class TestHome(TestCase):
         login = self.client.login(username=self.username, password=self.password)
         self.assertEqual(login, True)
         response = self.client.get('/')
-        self.assertContains(response,'Assignments')
-        self.assertContains(response,'Researches')
+        self.assertContains(response, 'Assignments')
+        self.assertContains(response, 'Researches')
         self.assertEqual(response.status_code, 200)
