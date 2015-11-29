@@ -3,7 +3,6 @@ from django.db import models
 from django.utils import timezone
 
 from subjects.models import Subject
-from users.models import Student
 
 
 class Assignment(models.Model):
@@ -26,7 +25,7 @@ class Assignment(models.Model):
 class AssignmentUpload(models.Model):
     assignment = models.ForeignKey(Assignment)
     user = models.ForeignKey(User)
-    file = models.FileField(verbose_name='file',upload_to='uploads/')
+    file = models.FileField(verbose_name='file', upload_to='uploads/')
     slug = models.SlugField(verbose_name='slug')
     created = models.DateTimeField(default=timezone.now)
 

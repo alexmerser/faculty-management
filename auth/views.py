@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.template.context import RequestContext
 from django.views.generic.base import TemplateView
 from django.contrib.auth import logout

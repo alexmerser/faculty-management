@@ -19,10 +19,6 @@ class TestAssignmentList(TestCase):
         login = self.client.login(username=self.username, password=self.password)
         self.assertEqual(login, True)
         course = Course.objects.create(number='1234', name='Test course')
-        student = Student.objects.create(
-            user=User.objects.create_user('test_user', first_name='Student'),
-            course=course,
-        )
         staff = Staff.objects.create(
             user=User.objects.create_user('test_staff', first_name='Staff')
         )
@@ -42,10 +38,6 @@ class TestAssignmentDetail(TestCase):
         login = self.client.login(username=self.username, password=self.password)
         self.assertEqual(login, True)
         course = Course.objects.create(number='1234', name='Test course')
-        student = Student.objects.create(
-            user=User.objects.create_user('test_user', first_name='Student'),
-            course=course,
-        )
         staff = Staff.objects.create(
             user=User.objects.create_user('test_staff', first_name='Staff')
         )

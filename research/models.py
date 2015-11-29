@@ -1,7 +1,6 @@
 from django.db import models
 
 from subjects.models import Subject
-from users.models import Student
 
 
 class Research(models.Model):
