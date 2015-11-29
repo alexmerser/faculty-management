@@ -12,4 +12,3 @@ class SubjectList(ListView):
 class SubjectDetail(DetailView):
     model = Subject
 
-
