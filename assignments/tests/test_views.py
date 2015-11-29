@@ -1,10 +1,9 @@
 from django.contrib.auth.models import User
-
 from django.core.urlresolvers import reverse
 from django.test import TestCase,Client
 from django.utils import timezone
 
-from assignments.models import Assignment, AssignmentUpload
+from assignments.models import Assignment
 from courses.models import Course
 from subjects.models import Subject
 from users.models import Student, Staff

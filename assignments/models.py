@@ -31,4 +31,3 @@ class AssignmentUpload(models.Model):
     def __str__(self):
         return 'Upload to {} as {} at {}, {}'.format(
             self.assignment, self.user, self.created, self.file.name)
-

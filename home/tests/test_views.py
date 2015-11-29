@@ -1,13 +1,7 @@
-
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.test.client import Client
-from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
-from django.utils import timezone
 
-
-
-from users.models import Student, Staff
 
 class TestHome(TestCase):
     def test_single(self):
