@@ -26,7 +26,6 @@ class AssignmentUpload(models.Model):
     assignment = models.ForeignKey(Assignment)
     user = models.ForeignKey(User)
     file = models.FileField(verbose_name='file', upload_to='uploads/')
-    slug = models.SlugField(verbose_name='slug')
     created = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
