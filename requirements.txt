@@ -1,5 +1,7 @@
 decorator==4.0.4
 Django==1.8.5
+django-render-partial==0.1
+django-stronghold==0.2.7
 flake8==2.5.0
 ipython==4.0.0
 ipython-genutils==0.1.0

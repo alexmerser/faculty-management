@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from assignments.views import AssignmentDetail, AssignmentsList
+from assignments.views import AssignmentDetail, AssignmentsList, AssignmentUploadView
 
 urlpatterns = [
     url(r'^$',
@@ -9,4 +9,7 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/?$',
         AssignmentDetail.as_view(),
         name='assignment_detail'),
+    url(r'^(?P<pk>\d+)/upload$',
+        AssignmentUploadView.as_view(),
+        name='assignment_upload'),
 ]

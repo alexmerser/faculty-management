@@ -11,7 +11,7 @@
     </tr>
     <tr>
         <td>Staff</td>
-        <td><a href="{% url 'staff_detail' subject.pk %}">{{ subject.staff }}</a></td>
+        <td><a href="{% url 'staff_detail' subject.staff.pk %}">{{ subject.staff }}</a></td>
     </tr>
 </table>
 {% endblock %}

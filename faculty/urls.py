@@ -17,6 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic import TemplateView
 
+from auth.views import LoginView
 from home.views import HomeView
 
 urlpatterns = [
@@ -28,4 +29,6 @@ urlpatterns = [
     url(r'^assignments/', include('assignments.urls')),
     url(r'^subjects/', include('subjects.urls')),
     url(r'^users/', include('users.urls')),
+    url(r'^login/$', LoginView.user_login, name='login'),
+    url(r'^logout/$', LoginView.user_logout, name='logout'),
 ]
